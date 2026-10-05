@@ -1,0 +1,29 @@
+ name: Terraform Deploy 
+
+ on:                                               # This is a webhook
+    # push:
+    #   branches: [ main ]
+    workflow_dispatch:    # ✅ Manual Trigger only 
+
+  jobs:
+    terraform:
+      runs_on: ubuntu-latest
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: terrform init
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terrafor Apply
+        run: terraform apply -auto-approve tfplan
