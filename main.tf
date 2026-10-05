@@ -1,7 +1,7 @@
 terraform {
     backend "s3" {
         bucket = "store-statefiles-yamini"
-        key = "tf_github_actions"
+        key = "tf_github_actions/terraform.tfstate"
         region="us-east-1"
         use_lockfile = true
     }
